@@ -60,7 +60,7 @@ Useful commands are available in the [Makefile](./Makefile).
 An example project demonstrating backend system design.
 
 ## 🧑‍💼 Author
-**Dušan Mlynarčík** — Software Engineer & App Builder
+**Dušan Mlynarčík** — Senior Backend Engineer & App Builder
 
 - LinkedIn: https://www.linkedin.com/in/dusanmlynarcik/
 - GitHub: https://github.com/dusanmlynarcikdev
