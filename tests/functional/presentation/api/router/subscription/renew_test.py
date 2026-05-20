@@ -26,6 +26,7 @@ async def test_renew(
     with patch("app.application.subscription.renew_use_case.date") as mock_date:
         mock_date.today.return_value = date(2026, 1, 1)
         response = client.post(PATH.format(email="john@doe.com"))
+    session.expunge_all()
 
     assert response.status_code == status.HTTP_204_NO_CONTENT
     assert response.content == b""
