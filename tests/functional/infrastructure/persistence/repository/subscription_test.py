@@ -23,7 +23,7 @@ async def test_add(session: AsyncSession) -> None:
     await SubscriptionRepository(session).add(subscription)
     session.expunge_all()
 
-    repository_subscription = await get_subscription(session, subscription.id)
+    repository_subscription = await get_subscription(session)
 
     assert repository_subscription.id == UUID("019d2a4c-ab5d-7a0c-87bb-d4306b6d9d04")
     assert repository_subscription.email == "john@doe.com"
@@ -123,7 +123,7 @@ async def test_update(session: AsyncSession) -> None:
     await SubscriptionRepository(session).update(subscription)
     session.expunge_all()
 
-    repository_subscription = await get_subscription(session, subscription.id)
+    repository_subscription = await get_subscription(session)
 
     assert repository_subscription.id == UUID("019d2a4c-ab5d-7a0c-87bb-d4306b6d9d04")
     assert repository_subscription.email == "john@doe.com"
@@ -142,8 +142,7 @@ async def test_update_unknown(session: AsyncSession) -> None:
         )
 
 
-async def get_subscription(session: AsyncSession, id: UUID) -> SubscriptionSchema:
-    query = select(SubscriptionSchema).where(SubscriptionSchema.id == id)
-    result = await session.exec(query)
+async def get_subscription(session: AsyncSession) -> SubscriptionSchema:
+    result = await session.exec(select(SubscriptionSchema))
 
     return result.one()
