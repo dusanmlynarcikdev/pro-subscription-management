@@ -26,6 +26,7 @@ async def test_create(client: TestClient, session: AsyncSession) -> None:
             "period": "yearly",
         },
     )
+    session.expunge_all()
 
     assert response.status_code == status.HTTP_204_NO_CONTENT
     assert response.content == b""
@@ -66,6 +67,7 @@ async def test_update(client: TestClient, session: AsyncSession) -> None:
             "period": "yearly",
         },
     )
+    session.expunge_all()
 
     assert response.status_code == status.HTTP_204_NO_CONTENT
     assert response.content == b""
